@@ -1,0 +1,85 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PART 2 - CHAPITRE 11 %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Sommaire et index}
+\section{Table des matières}
+\subsection*{Table des matières simple}
+Il suffit de placer la commande \verb|\tableofcontents| là où vous souhaitez insérer la table des matières. La table est conçue telle que le prévoient les paramètres par défaut de \LaTeX{}. cela nécessite deux compilations: la première permet à \LaTeX{} de comprendre la structure du document et de lister les titres, et la seconde permet la mise en forme de la table avec les numéros de pages.
+\medskip
+
+\subsection*{Paramétrage d'une table des matières}
+\paragraph*{Appeler la table \og sommaire\fg{}}
+avec la commande suivante à insérer dans le corps du document, juste avant la commande \verb|\tableofcontents|:
+\begin{verbatim}
+    \renewcommand{\contentsname}{Sommaire}
+\end{verbatim}
+\medskip
+
+\paragraph*{Raccourcir une ligne}
+Lors de la création d'un élément de structure il est possible de définir deux titres: l'un pour le document, l'autre pour la table des matières. On code cela de la manière suivante:
+\begin{verbatim}
+    \section{titre table des matières}{titre dans le document}
+\end{verbatim}
+\medskip
+
+\paragraph*{Quel niveau hiérarchique dans notre table des matières ?}
+Il est possible de définir le niveau hiérarchique de la table des matières (inclusion des sous-sections ou non, des sections, etc.). La commande à placer en préambule est alors la suivante:
+\begin{verbatim}
+    \setcounter{tocdepth}{Choix du niveau (nombre)}
+\end{verbatim}
+\medskip
+
+Concernant le niveau hiérarchique choisi, voir le tableau suivant:
+\begin{table}{!h}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Niveau hiérarchique (inclus)} & \textbf{Valeur} \\
+\hline
+Partie & -1 \\
+\hline
+Chapitre & 0 \\
+\hline
+Section & 1 \\
+\hline
+Sous-section & 2 \\
+\hline
+Sous-sous-section & 3 \\
+\hline
+Paragraphe & 4 \\
+\hline
+Sous-paragraphe & 5 \\
+\hline
+\end{tabular}
+\caption{Tableau des niveaux hiérarchiques de la table des matières}
+\end{center}
+\end{table}
+\medskip
+
+A noter qu'avec la classe \texttt{book}, par défaut, les titres des paragraphes ne sont pas inclus.
+\medskip
+
+\section{Tables de figures et tableaux}
+Ces tables suivent à peu prés les mêmes mécanismes que ceux de la table des matières. On utilise respectivement les commandes \verb|\listoffigures| et \verb|\listoftables|. Apparaissent dans ces tables, soit un titre spécialement conçu pour la table, soit la légende contenue dans la commande \verb|\caption{}|. Voici les deux usages de la commande \verb|\caption{}|:
+\begin{verbatim}
+    \caption{légende de la figure ou de la table}
+    \caption[légende courte]{légende de la figure ou de la table}
+\end{verbatim}
+\medskip
+
+Là encore, deux compilations sont nécessaires.
+\medskip
+
+\section{Les index}
+La création d'un index nécessite le package \textit{makeindex} et l'insertion de la commande \verb|\makeindex| dans le préambule, puis on insère la commande \verb|\printindex| à l'endroit où l'on décide de l'afficher. Les entrées d'index seront marqués à l'aide de la commande \verb|\index{argument}| collée au mot que l'on souhaite indexé. L'utilisation d'index nécessite trois compilations. Dans l'index les \textit{arguments} figureront dans l'ordre alphabétique.
+\medskip
+
+Nous venons de voir la méthode la plus simple pour la création d'index, mais créer de véritables index s'avère beaucoup plus complexe.
+\medskip
+
+Commande permettant de d'insérer un \textit{argument} d'index avec une référence croisée:
+\begin{verbatim}
+    \index{argument|see{référence croisée}}
+\end{verbatim}
+\medskip

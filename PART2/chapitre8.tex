@@ -1,0 +1,106 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PART 2 - CHAPITRE 8 %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Les figures}
+\section{Choix des fichiers}
+Avant d'entrer dans le vif du sujet voyons d'abord le type de compilation en fonction du fichier image utilisé.
+\begin{description}
+	\item[Utilisation de fichiers \texttt{.eps}]: obligation de compiler en \textit{Post-Script} avant d'effectuer une conversion en \textit{PDF}. Il sera impossible d'utiliser des fichiers \textit{PNG}, \textit{BMP}, \textit{jPEG} ou \textit{GIF} en parallèle.
+	\item[Utilisation des fichiers \textit{PNG}, \textit{BMP}, \textit{jPEG} ou \textit{GIF}]: obligation de compiler directement en \textit{PDF}.
+\end{description}
+\medskip
+
+Il est bien sût tout à fait possible de convertir un fichier image d'un format à une autre.
+\medskip
+
+\section{L'insertion d'image}
+Tout d'abord il est nécessaire de faire appel au package \textit{graphicx}.
+\medskip
+
+La commande pour insérer simplement une figure:
+\begin{verbatim}
+    \includegraphics{chemin\du\fichier\image.xxx}
+\end{verbatim}
+\medskip
+
+\section{Taille d'une image}
+Il existe plusieurs méthodes pour indiquer à \LaTeX{} la taille de l'image à insérer:
+\begin{itemize}
+	\item faire en sorte que l'image ait une largeur donnée, la hauteur sera automatiquement adpatée;
+	\item avec une hauteur donnée, c'est la largeur qui sera adaptée;
+	\item fixer à la fois la hauteur et la largeur (risque de déformation de l'image);
+	\item choisir un coefficient de proportionnalité et l'image sera \og retaillée\fg{} de façon cohérente.
+\end{itemize}
+\medskip
+
+Les quatre commandes correspondantes:
+\begin{verbatim}
+    \includegraphics[width=200]{fichier_image.xxx}   % largeur
+    \includegraphics[height=200]{fichier_image.xxx}  % hauteur
+    \includegraphics[height=200, width=100]{fichier_image.xxx}  % fixation 
+                     % hauteur et largeur
+    \includegraphics[scale=1.5]{fichier_image.xxx}   % Avec coefficient
+\end{verbatim}
+\medskip
+
+\section{Rotation d'une image}
+On va pour cela utiliser la variable \texttt{angle}:
+\begin{verbatim}
+    \includegraphics[angle=45]{fichier_image.xxx}
+\end{verbatim}
+\medskip
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.25, angle=45]{IMG/tux.png}
+\caption{Illustration avec un angle de 45°}
+\end{center}
+\end{figure}
+\medskip
+
+\section{Intégration d'une image dans un paragraphe}
+Nous allons intégrer une image dans un texte de façon à ce que le texte contourne la figure à l'aide du package \textit{wrapfig} (afin d'utiliser l'environnement \texttt{wrapfigure}. Noter cependant que nous n'avons pas la pleine maîtrise du résultat car c'est \LaTeX{} qui redéfinit les arrangements. Avec l'environnement \texttt{wrapfigure} il existe diverses variables:
+\begin{itemize}
+	\item le nombre de lignes nécessaires à la bonne intégration de l'image;
+	\item la taille du dépassement autorisé dans la marge (\texttt{0} pour garder des documents \og propres\fg{});
+	\item la largeur de l'image;
+	\item l'alignement de l'image. 
+\end{itemize}
+\medskip
+
+La syntaxe est alors la suivante:
+\begin{verbatim}
+    \begin{wrapfigure}[nbre_de_lignes]{placement}{largeur_image_en_cm}
+    \includegraphics[width=largeur_en_cm]{fichier_image.xxx}
+    \end{wrapfigure}
+    Mon paragraphe sans saut de ligne après la commande \end{wrapfigure}...
+\end{verbatim}
+\medskip
+
+Le placement se définit à l'aide des lettres suivantes:
+\begin{description}
+    \item[l]: image à gauche;
+    \item[r]: image à droite;
+    \item[o]: image à l'extérieur (à droite avec une page impaire, à gauche avec une page paire);
+    \item[i]: image à l'intérieur (à gauche pour une page impaire, à droite pour une page paire).
+\end{description}
+\medskip
+
+Exemple de code pour intégrer une image de 2.5 x 2.3 cm de large, qui occupe 6 lignes et située à droite du paragraphe:
+\begin{verbatim}
+    \begin{wrapfigure}[6]{r}{2.5cm}
+    \includegraphics[width=2.3cm]{IMG/tux.png}
+    \end{wrapfigure}
+    Le paragraphe qui intègrera l'image...
+\end{verbatim}
+\medskip
+
+Ce qui pourrait donner:
+\medskip
+
+\begin{wrapfigure}[6]{r}{2.5cm}
+\includegraphics[width=2.3cm]{IMG/tux.png}
+\end{wrapfigure}
+La mascotte de \textit{Linux} est employée par de nombreuses applications en tant que logo, mais a aussi été modifiée par de nombreux particuliers et développeurs. On découvrira ainsi, parmi de nombreux autres, \textit{Tux} en Sherlock Holmes, en Dracula, ou encore en Charlie Chaplin ou habillé avec des maillots de football. De nombreux logiciels libres, comme \textit{TuxGuitar}, \textit{Tux Paint} ou \textit{Tux Racer} reprennent \textit{Tux} dans leur intitulé et/ou dans leur logo. Le dessin du personnage a été choisi à l'issue d'un concours organisé en 1996 remporté par Larry \textsc{Ewing}. Il utilisa \textit{GIMP}, le logiciel de traitement d'image phare sur \textit{GNU/Linux}. Il s'agit d'un personnage fictif représentant très approximativement un manchot pygmée dont l'idée a été suggérée par Alan \textsc{Cox1} puis affinée par Linus \textsc{Torvalds}, le créateur du noyau \textit{Linux}. Certains déclarèrent de prime abord que cette mascotte était inappropriée car elle n'évoquait guère la puissance. Linus \textsc{Torvalds} répondit que nulle personne poursuivie par un manchot pygmée, qui court vite et dispose d'un bec très dur, ne penserait cela. Les contradictions s'éteignirent...\footnote{Extrait de la page \textit{Wikipedia} consacrée à \textit{Tux}: \url{https://fr.wikipedia.org/wiki/Tux}.}
+\medskip

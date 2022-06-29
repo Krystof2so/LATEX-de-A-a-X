@@ -1,0 +1,826 @@
+\documentclass[a4paper,11pt]{book}
+
+% packages de base
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% packages additionnels
+\usepackage{array}  % Commandes complémentaires pour les tableaux
+\usepackage{colortbl}  % Coloration des tableaux
+\usepackage{fancyhdr}  % Personnalisation en-tête et pied de page
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.8cm, right=2.8cm]{geometry}  % Pour redimensionner les marges
+\usepackage{graphicx}  % Pour les figures
+\usepackage{multirow}  % Pour améliorer les tableaux
+\usepackage{soul}  % Pour les soulignements
+\usepackage{ulem}  % Pour les soulignements
+\usepackage{color}  % Pour utiliser des couleurs
+\usepackage{verbatim}  % Pour les citation de code
+\usepackage{moreverb}  % Pour insérer du code avec tabulation
+\usepackage{listings}  % Pour définir un environnement de citation de code
+\usepackage{slashbox}  % Slashbox dans les cellules
+\usepackage{url}  % Pour l'insertion des url
+\usepackage{wrapfig}  % Pour intégrer des images dans un paragraphe
+
+% les packs de polices
+\usepackage{bookman}
+\usepackage{charter}
+\usepackage{newcent}
+\usepackage{lmodern}
+\usepackage{mathpazo}
+\usepackage{mathptmx}
+
+% Environnement pour du code Python:
+\lstset{
+    language=Python,
+    basicstyle=\footnotesize,
+    numbers=left,
+    numberstyle=\normalsize,
+    numbersep=4pt,
+}
+   
+% Titre du livre
+\title{\fbox{\LaTeX{} de A à X}}
+\author{krystof}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\renewcommand{\contentsname}{Sommaire}
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PREMIERE PARTIE  %%%
+%%% Une présentation %%%
+%%% de LaTeX.        %%%      
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{\textcolor{magenta}{Découvrir et installer \LaTeX}}
+
+% Personnalisation en-têtes et pieds de pages
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headsep}{15pt}
+\setlength{\headheight}{1cm}
+\lhead{\textcolor{magenta}{Chapitre} \thechapter}
+\rhead{\thepage}
+\cfoot{}
+
+\input{PART1/chapitre1.tex}
+\input{PART1/chapitre2.tex}
+\input{PART1/chapitre3.tex}
+\input{PART1/chapitre4.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%% DEUXIEME PARTIE  %%%
+%%% Pour une         %%%
+%%% utilisation      %%%
+%%% basique de LaTeX %%%      
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{\textcolor{magenta}{Pour une utilisation basique de \LaTeX}}
+
+\input{PART2/chapitre5.tex}
+\input{PART2/chapitre6.tex}
+\input{PART2/chapitre7.tex}
+\input{PART2/chapitre8.tex}
+\input{PART2/chapitre9.tex}
+\input{PART2/chapitre10.tex}
+\input{PART2/chapitre11.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% TROISIEME PARTIE  %%%
+%%% Vers une          %%%
+%%% connaissance plus %%%
+%%% approfondie de    %%%
+%%% LaTeX             %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{\textcolor{magenta}{Vers une connaissance plus approfondie de \LaTeX}}
+\chapter{La mise en page}
+\section{Des en-têtes et pieds de pages personnalisés}
+Nous allons réaliser cela à l'aide de la commande \verb|\pagestyle{fancy}| fournie par le package \textit{fancyhdr}. Cette commande découpe chaque en-tête et pied de page en trois morceaux, de sorte que nous devons personnaliser six commandes différentes pour arriver à créer une mise en page cohérente des en-têtes et pieds de pages.
+\medskip
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{La commande} & \textbf{Son résultat} \\
+\hline
+\verb|\lhead{..}| & Gère le coin gauche de l'en-tête \\
+\hline
+\verb|\chead{..}| & Gère le centre de l'en-tête \\
+\hline
+\verb|\rhead{..}| & Gère le coin droit de l'en-tête \\
+\hline
+\verb|\lfoot{..}| & Gère le coin gauche du pied de page \\
+\hline
+\verb|\cfoot{..}| & Gère le centre du pied de page \\
+\hline
+\verb|\rfoot{..}| & Gère le coin droit du pied de page \\
+\hline
+\verb|\leftmark| & Nom du chapitre \\
+\hline
+\verb|\rightmark| & Nom de la section \\
+\hline
+\verb|\thepage| & Numéro de page \\
+\hline
+\verb|\thechapter| & Numéro du chapitre \\
+\hline
+\verb|\thesection| & Numéro de la section courante \\
+\hline
+\verb|\renewcommand{\headrulelewidth}{épaisseur}| & Épaisseur de la ligne entre l'en-tête et le corps du texte \\
+\hline
+\verb|\renewcommand{\footrulelewidth}{épaisseur}| & Épaisseur de la ligne entre le pied de page et le corps du texte \\
+\hline
+\verb|\renewcommand{\headsep}{longueur}| & Espacement entre l'en-tête et le corps du document \\
+\hline
+\end{tabular}
+\caption{Les commandes disponibles avec le package \textit{fancyhdr}}
+\end{center}
+\end{table}
+\medskip
+
+Voici, à titre d'exemple, le style utilisé pour ce document (les lignes suivantes sont placés juste après la première ligne avec la commande \verb|\part{}|):
+\begin{verbatim}
+    % Personnalisation en-têtes et pieds de pages
+    \pagestyle{fancy}
+    \renewcommand{\headrulewidth}{1pt}
+    \renewcommand{\headsep}{15pt}
+    \setlength{\headheight}{1cm}
+    \lhead{\textcolor{magenta}{Chapitre} \thechapter}
+    \rhead{\thepage}
+    \cfoot{}
+\end{verbatim}
+\medskip
+
+\section{Les unités de longueur}
+Le plus simple étant de préciser tout cela à l'aide du tableau ci-dessous:
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Unité} & \textbf{Exprimée avec \LaTeX{}} & \textbf{Valeur en millimètres} \\
+\hline
+Point & \texttt{pt} & 0,35 mm \\
+\hline
+Millimètre & \texttt{mm} & 1,00 mm \\
+\hline
+Pica & \texttt{pc} & 4,21 mm \\
+\hline
+Cicéro & \texttt{cc} & 4,53 mm \\
+\hline
+Centimètre & \texttt{cm} & 10,00 mm \\
+\hline
+Inch & \texttt{in} & 25.4 mm \\
+\hline
+\end{tabular}
+\caption{Les unités de longueur}
+\end{center}
+\end{table}
+\medskip
+
+A titre d'indication une feuille A4 mesure 210 millimètres de large et 297 de haut.
+\medskip
+
+\section{Les espaces}
+Ceux-ci peuvent se définir (entre deux mots, entre deux parties de texte) à l'aides des commandes suivantes:
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{8.5cm}|}
+\hline
+\textbf{Commande} & \textbf{Résultat} \\
+\hline
+\verb|\hspace{longueur}| & Insère un espace horizontal de la longueur choisie. \\
+\hline
+\verb|\hspace*{longueur}| & Idem, saut que l'espace n'est pas inséré s'il y a un retour à la ligne entre les deux mots concernés par l'espacement. \\
+\hline
+\verb|\vspace{hauteur}| & Insère un espace vertical de la longueur choisie. \\
+\hline
+\verb|\vspace*{hauteur}| & Ici, l'espace n'est pas inséré s'il y a un saut de page. \\
+\hline
+\end{tabular}
+\caption{Les quatre principales commandes d'espacement}
+\end{center}
+\end{table}
+\medskip
+
+\chapter{Les gabarits}
+Voyons ici quelques gabarits dont il est tout à fait possible de vous inspirer.
+\medskip
+
+\section{La classe \texttt{article}}
+\begin{verbatim}
+    \documentclass[a4paper,10pt]{article}
+    \usepackage[utf8x]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage[french]{babel}
+    \usepackage{lmodern} % Pour changer le pack de police
+    \author{\textsc{Nom} Prénom}
+    \date{\today}
+    \title{Mon titre d’article}
+
+    \begin{document}
+    
+    \maketitle
+    
+    \begin{abstract}
+    Le résumé (abstract en anglais) de mon article.
+    \end{abstract}
+
+    % Le contenu
+    Bla bla bla
+
+    \end{document}
+\end{verbatim}
+\medskip
+
+\section{La classe \texttt{report}}
+\begin{verbatim}
+    \documentclass[a4paper,10pt]{report}
+    \usepackage[utf8x]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage[french]{babel}
+    \usepackage{lmodern} % Pour changer le pack de police
+    \usepackage{makeidx}
+    \title{Le titre}
+    \author{\textsc{Nom} Prénom}
+    \date{} % Pour mettre la date du jour, tapez \today
+    \makeindex
+    
+    \begin{document}
+    
+    \maketitle
+    
+    \newpage
+    \tableofcontents
+    \newpage
+
+    % Le contenu
+    Bla\index{bla} bla bla
+
+    \listoffigures
+    \listoftables
+    \printindex
+    
+    \end{document}
+\end{verbatim}
+\medskip
+
+\section{La classe \texttt{book}}
+\begin{verbatim}
+    \documentclass{book}
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage[french]{babel}
+    \usepackage{lmodern} % Pour changer le pack de police
+    \usepackage{makeidx}
+    \makeindex
+    \title{Le titre}
+    \author{\textsc{Nom} Prénom}
+    \date{\today}
+    
+    \begin{document}
+    
+    \maketitle % Page de garde
+    
+    \frontmatter
+    
+    Pages introductives
+    
+    \mainmatter
+    
+    Contenu
+    
+    \appendix
+    
+    Chapitres annexes
+    % Certains mettent la bibliographie après backmatter.
+    \bibliographystyle{} % Le style est mis entre crochets.
+    \bibliography{bibli} % Mon fichier de base de données s’appelle bibli.bib.
+
+    \backmatter
+
+    Epilogue
+
+    \tableofcontents
+    \listoffigures
+    \listoftables
+    \printindex
+
+    \end{document}
+\end{verbatim}
+\medskip
+
+\section{La classe \texttt{letter}}
+\begin{verbatim}
+    \documentclass{letter}
+
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage[francais]{babel}
+    \usepackage{lmodern}
+
+    \signature{M. Laleloulilo (signature)}
+    \address{Première ligne de l’adresse \\ Deuxième ligne \\ Troisième ligne}
+
+    \begin{document}
+    % Pas besoin d’insérer un champ de datation. Il est ajouté par défaut.
+    \begin{letter}{Un destinataire\\Un autre \\ Son copain \& son lapin \\
+    ligne d’adresse 1 \\ ligne d’adresse 2 \\ ligne d’adresse 3}
+    \opening{Formule de politesse d’ouverture,}
+
+    Le texte.
+
+    \closing{Cordialement, (formule de politesse)}
+    \ps{P.-S. : Votre petit ajout ! :-)}
+    
+    \end{letter}
+ 
+    \end{document}
+\end{verbatim}
+\medskip
+
+\chapter{Les bibliographies}
+Tout bon texte d'étude rédigé doit nécessairement comporter une bibliographie. \LaTeX{} offre à ce sujet des possibilités étendues, qui ne sont pas toujours aisées à aborder, mais les maîtriser ne donnera que plus de valeur à vos publications.
+\medskip
+
+\section{Le principe - Approche théorique}
+Réaliser une bibliographie consiste à mettre en forme une liste d'ouvrages ou de publications. Il existe pour cela divers modèles bibliographiques\footnote{Nous renvoyons le lecteur vers la page \textit{Wikipedia} consacrée au sujet (\url{https://fr.wikipedia.org/wiki/Bibliographie}) et notamment la partie listant les divers types de bibliographies}. Retenons l'idée qu'\og \textit{une bibliographie est une liste structurée de références de documents, généralement écrits}\fg{}\footnote{Source \textit{Wikipedia}}.
+\medskip
+
+Concernant la réalisation d'une bibliographie avec \LaTeX{} il faut savoir que ce dernier utiliser pour cela un programme externe du nom de \texttt{Bib\TeX{}}. Ce programme fournit une armada d'outils destinés à concevoir facilement sa liste (la base de données) contenant toutes les informations sur les ouvrages (auteur, date de parution, etc.). Chaque ouvrage se voit affecté une étiquette et il suffira d'intégrer cette étiquette dans le document \texttt{.tex} pour que l'ouvrage en question figure dans le document rédigé.
+\medskip
+
+Les étapes de ce principe:
+\begin{enumerate}
+	\item Création d'une base de données (listing des ouvrages et publications). Chaque ouvrage se voit affecté une étiquette.
+	\item Les étiquettes sont insérées dans le texte.
+	\item Les différents ouvrages appelés dans le manuscrit sont sélectionnés dans la base de données.
+	\item La bibliographie est créée dans le document.
+\end{enumerate}
+\medskip
+
+\section{La base de données}
+Cette base de données est constituée de paragraphes contenant chacun les informations et l'étiquette des ouvrages. Le fichier qui sera enregistré le sera au format \texttt{.bib}. La structuration des informations concernant un ouvrage dans une base de données est toujours la même:
+\begin{verbatim}
+    @type_d'oeuvre{référence_courte,
+    Titre_du_champ1={Texte},
+    Titre_du_champ2={Texte},
+    Titre_du_champ2={Texte},
+    Titre_du_champ2={Texte},
+    }
+    Entre deux ouvrages, tout texte est considéré comme commentaire.
+    @type_d'oeuvre{référence_courte,
+    Titre_du_champ1={Texte},
+    Titre_du_champ2={Texte},
+    Titre_du_champ2={Texte},
+    Titre_du_champ2={Texte},
+    }
+\end{verbatim}
+\medskip
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{3.5cm}|p{6cm}|}
+\hline
+\textbf{Type d'oeuvre} & \textbf{Correspondance} & \textbf{Champs disponibles} \\
+\hline
+\verb|@article| & Article & \texttt{author}, \texttt{journal}, \texttt{title}, \texttt{year}, \texttt{month}, \texttt{pages}, \texttt{notes} \\
+\hline
+\verb|@book| & Livre & \texttt{author}, \texttt{title}, \texttt{publisher}, \texttt{year} \\
+\hline
+\verb|@manual| & Document technique & \texttt{title}, \texttt{author}, \texttt{year}, \texttt{organization} \\
+\hline
+\verb|@misc| & Divers & \texttt{author}, \texttt{title}, \texttt{year}, \texttt{month}, \texttt{note} \\
+\hline
+\verb|@phdtheisis| & Thèse de doctorat & \texttt{author}, \texttt{title}, \texttt{school}, \texttt{year} \\
+\hline
+\verb|@unpublished| & Manuscrit non publié & \texttt{author}, \texttt{title}, \texttt{note}, \texttt{year}, \texttt{month} \\
+\hline
+\end{tabular}
+\caption{Les types d'oeuvres et les champs disponibles, parmi les plus répandus.}
+\end{center}
+\end{table}
+\medskip
+
+Pour le champ \texttt{author}, les noms et les prénoms sont séparés par une virgule, et quand il y a plusieurs auteurs ils sont eux séparés par l'instruction \texttt{AND}.
+\medskip
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Champs} & \textbf{Correspondance} \\
+\hline
+\texttt{author} & Auteur \\
+\hline
+\texttt{journal} & Journal \\
+\hline
+\texttt{month} & Mois de publication au choix (\textbf{jan}, \texttt{feb}, \texttt{mar}...) \\
+\hline
+\texttt{note} & Notes complémentaires \\
+\hline
+\texttt{organization} & Société ou organisation \\
+\hline
+\texttt{pages} & Pages concernées \\
+\hline
+\texttt{publisher} & Editeur \\
+\hline
+\texttt{year} & Année de publication \\
+\hline
+\end{tabular}
+\caption{Les principaux champs.}
+\end{center}
+\end{table}
+\medskip
+
+Exemple pour article de revue:
+\begin{verbatim}
+    @article{ref,
+    author={Durand, Patrick AND Durand, René},
+    journal={La gazette linuxienne},
+    title={La distribution qui va détrôner Windows...},
+    year={2022},
+    months={jun},
+    pages={8},
+    notes={Complément paramétrages}
+    }
+\end{verbatim}
+\medskip
+
+Exemple pour un livre:
+\begin{verbatim}
+    @book{ref,
+    author={Kerouac, Jack},
+    title={Sur la route},
+    publisher={Gallimard},
+    year={1976}
+    }
+\end{verbatim}
+\medskip
+
+\section{Mise en place de la bibliographie}
+Nous ferons référence à des éléments de la base de données via la commande:
+\begin{verbatim}
+    \cite{référence courte} 
+\end{verbatim} \\
+
+que nous placerons à l'endroit désiré dans le texte. Cette commande est à allier avec les commandes:
+\begin{verbatim}
+    \bibliographystyle{style}
+    \bibliography{nom fichier .bib (sans.bib)}
+\end{verbatim}
+\medskip
+
+Exemple:
+\begin{verbatim}
+    \begin{document}
+    
+    Mon texte est issue de l'ouvrage \cite{ref} qui s'appuie lui même sur 
+    le livre \cite{ref2}...
+
+    \bibliographystyle{un des styles}
+    \bibliography{ma_bibli}
+    
+    \end{document}        
+\end{verbatim}
+\medskip
+
+\verb|\bibliographystyle{style}| utilise divers styles que nous pouvons résumer dans le tableau ci-dessous:
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|p{2cm}|p{10cm}|}
+\hline
+\textbf{Styles} & \textbf{Effets} \\
+\hline
+\texttt{plain}  & Classe les entrées par ordre alphabétique et les numérote en conséquence. \\
+\hline
+\texttt{abbrv} & Classe les entrées par ordre alphabétique, les numérote en conséquence et abrège certains éléments de la bibliographie. \\
+\hline
+\texttt{unsrt} & Trie les entrées par ordre d'apparition dans le texte. \\
+\hline
+\texttt{alpha} & Le repère n'est plus un chiffre, mais les trois premières lettres du nom de l'auteur accolées aux derniers chiffres de l'année de parution. \\
+\hline
+\end{tabular}
+\caption{Les styles bibliographiques}
+\end{center}
+\end{table}
+\medskip
+
+\section{La compilation} 
+La compilation d'une bibliographie va se dérouler en plusieurs temps. Deux compilations du fichier \texttt{.tex} source seront d'abord nécessaire, avant la compilation du fichier \texttt{.bib}, puis à nouveau deux autres compilations du fichier \texttt{.tex}.
+\medskip
+
+Sous \textit{GNU/Linux} cela donne:
+\begin{verbatim}
+    $ latex fichier_source.tex
+    $ latex fichier_source.tex
+    $ bibtex fichier.bib
+    $ latex fichier_source.tex
+    $ latex fichier_source.tex
+\end{verbatim}
+\medskip
+
+\chapter{Structurer son document avec plusieurs fichiers \texttt{.tex}}
+\section{Le concept}
+Pour les longs documents (tel celui-ci) il est possible de les scinder en plusieurs fichiers \texttt{.tex}. Cela permet de travailler sur une partie sans toucher aux autres. Ce principe repose sur une simple commande:
+\begin{verbatim}
+    \input{chemin_du_fichier}
+\end{verbatim}
+\medskip
+
+Avec cette commande, \LaTeX{} insère alors le contenu du fichier appelé.
+\medskip
+
+\section{Illustration par un exemple fictif}
+Il faut tout d'abord créer la structure de fichiers du projet de notre document:
+\begin{verbatim}
+	Répertoire principal
+	    |__ Fichier .tex principal
+	    |
+	    |__ Répertoire "Part1"
+	    |        |__ Fichier "chapitre1.tex"
+	    |        |__ Fichier "chapitre2.tex"
+	    |
+	    |__ Répertoire "Part2"
+	             |__ Fichier "chapitre3.tex"
+	             |__ Fichier "chapitre4.tex"
+\end{verbatim}
+\medskip
+
+Le fichier \texttt{.tex} principal contiendra alors les lignes suivantes:
+\begin{verbatim}
+    \documentclass[book]
+    
+    % Insertion des lignes de préambule
+    
+    \begin{document}
+    
+    \part{Première partie}
+    \input{Part1/chapitre1.tex}
+    \input{Part1/chapitre2.tex}
+    
+    \part{Seconde partie}
+    \input{Part2/chapitre3.tex}
+    \input{Part2/chapitre4.tex}
+    
+    \end{document}
+\end{verbatim}
+\medskip
+
+Voilà donc comment dissocier un long document en plusieurs fichiers \texttt{.tex}.
+\medskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% QUATRIEME PARTIE  %%%
+%%% Des packages pour %%%
+%%% encore plus de    %%%
+%%% fonctionnalités   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{\textcolor{magenta}{Des packages pour encore plus de fonctionnalités}}
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|p{4cm}|p{3cm}|p{6cm}|}
+\hline
+\textbf{Thématiques} & \textbf{Packages} & \textbf{Description} \\
+\hline
+Packages de langue & 
+\begin{itemize}
+    \item[\texttt{babel}] 
+    \item[\texttt{fontenc}] 
+    \item[\texttt{inputenc}]  
+\end{itemize}
+& Indispensables pour écrire un document en français. \\
+\hline
+Création d'un layout & 
+\begin{itemize}
+    \item[\texttt{layout}] 
+\end{itemize}
+& Pour afficher le gabarit de mise en page d'un document. \\
+\hline
+Modification des marges &
+\begin{itemize}
+    \item[\texttt{geometry}] 
+\end{itemize}
+& Ensemble de commandes qui permettent de régler finement les marges. \\
+\hline
+Interligne & 
+\begin{itemize}
+ \item[\texttt{setspace}] 
+\end{itemize} 
+& \\
+\hline
+Soulignement & 
+\begin{itemize}
+	\item[\texttt{soul}] 
+	\item[\texttt{ulem}] 
+\end{itemize}
+& Avec le package \textit{soul} il est également possible de barrer du texte \\
+\hline
+Symbole euro & 
+\begin{itemize}
+	\item[\texttt{eurosym}] 
+\end{itemize}
+& \\
+\hline
+Packs de police &
+\begin{itemize}
+    \item[\texttt{bookman}]
+    \item[\texttt{charter}]
+    \item[\texttt{lmodern}]
+    \item[\texttt{mathpazo}]
+    \item[\texttt{mathptmx}]
+    \item[\texttt{newcent}]
+\end{itemize}
+& Il est fortement conseillé de n'en utiliser qu'un à la fois. \\
+\hline
+Citation d'\textit{url} &
+\begin{itemize}
+	\item[\texttt{url}]
+\end{itemize}
+& \\
+\hline
+Citation de code &
+\begin{itemize}
+	\item[listings]
+	\item[moreverb]
+	\item[verbatim]
+\end{itemize}
+& Le package \textit{verbatim} donne accès aux environnements \texttt{verbatim} et \texttt{verbtimtab}. Avec le package \textit{listings} il ne faut pas oublier de paramétrer \verb|\lstset|. De plus \textit{lstlisting} permet de citer du code avec la coloration syntaxique.\\
+\hline
+En-têtes et pieds de pages personnalisés &
+\begin{itemize}
+	\item[\texttt{fancyhdr}]
+\end{itemize}
+& \\
+\hline
+Insertion d'images &
+\begin{itemize}
+	\item[\texttt{graphicx}]
+	\item[\texttt{wrapig}]
+\end{itemize}
+& Le package \textit{graphicx} est primordial pour travailler sur des images. \textit{wrapfig} permet d'insérer une image dans un paragraphe (à utiliser avec parcimonie).\\
+\hline
+Manipuler les couleurs &
+\begin{itemize}
+	\item[\texttt{color}]
+	\item[\texttt{colortbl}]
+\end{itemize}
+& \textit{color} va permettre de colorer du texte et \textit{colortbl} de colorer du texte contenu dans un tableau.\\
+\hline
+Les objets flottants &
+\begin{itemize}
+	\item[\texttt{float}]
+\end{itemize}
+& \\
+\hline
+Les tableaux &
+\begin{itemize}
+	\item[\texttt{array}]
+	\item[\texttt{multirow}]
+\end{itemize}
+& \\
+\hline
+Les index &
+\begin{itemize}
+	\item[\texttt{makeindex}]
+\end{itemize}
+& \\
+\hline
+\end{tabular}
+\caption{Liste des packages selon leur thématique}
+\end{center}
+\end{table}
+\medskip
+
+\chapter{Les packages de langue}
+\section{babel}
+Le package \textit{babel} permet l'utilisation de commandes propres à la langue choisie, comme par exemple pour le français, l'utilisation des guillemets français ou les petites capitales.
+\medskip
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Aperçu} & \textbf{Commande} \\
+\hline
+\og{} \fg{} & \verb|\og| et \verb|\fg| \\
+\hline
+Exposant \up{2} & \verb|\up{2}| \\
+\hline
+\bsc{Petites capitales} & \verb|\bsc{Petites capitales}| \\
+\hline
+\primo & \verb|\primo| \\
+\hline
+\secundo & \verb|\secundo| \\
+\hline
+\tertio & \verb|\tertio| \\
+\hline
+\quarto & \verb|\quarto| \\
+\hline
+\FrenchEnumerate{11} & \verb|\FrenchEnumerate{11}| \\
+\hline
+\no & \verb|\no| \\
+\hline
+\No & \verb|\No| \\
+\hline
+\nos & \verb|\nos| \\
+\hline
+\Nos & \verb|\Nos| \\
+\hline
+35\degres & \verb|35\degres| \\
+\hline
+\end{tabular}
+\caption{Commandes introduites par le package \textit{babel} pour le français}
+\end{center}
+\end{table}
+\medskip
+
+\section{fontenc}
+
+\section{inputenc}
+
+\chapter{Création d'un \textit{layout}}
+
+\chapter{Modification des marges avec \textit{geometry}}
+
+\chapter{Les interlignes avec \textit{setspace}}
+
+\chapter{Les soulignements}
+\section{\textit{soul}}
+\section{\textit{ulem}}
+
+\chapter{L'euro avec \textit{eurosym}}
+
+\chapter{Les packs de police}
+\section{\textit{bookman}}
+\section{\textit{charter}}
+\section{\textit{lmodern}}
+\section{\textit{mathpazo}}
+\section{\textit{mathptmx}}
+\section{\textit{newcent}}
+
+\chapter{Les citations d'\textit{url}}
+
+\chapter{Citation de code}
+\section{\textit{listings}}
+\section{\textit{moreverb}}
+\section{\textit{verbatim}}
+
+\chapter{En-têtes et pieds de pages personnalisés avec \textit{fancyhdr}}
+
+\chapter{L'insertion d'images}
+\section{\textit{graphicx}}
+\section{\textit{wrapfig}}
+
+\chapter{Manipuler les couleurs}
+\section{\textit{color}}
+\section{\textit{colortbl}}
+
+\chapter{Les objets flottants avec \textit{float}}
+
+\chapter{Les tableaux}
+\section{\textit{array}}
+\section{\textit{multirow}}
+
+\chapter{Les index avec \textit{makeindex}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% CINQUIEME PARTIE  %%%
+%%% Le monde de       %%%
+%%% LaTeX             %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{\textcolor{magenta}{Le monde de \LaTeX}}
+\chapter{\textit{Texmaker}}
+
+\chapter{Des ressources complémentaires}
+\section{Ressources du \textit{Web}}
+\begin{description}
+	\item[Le tutoriel de formation \LaTeX{} de l'ENS]: \url{https://www.tuteurs.ens.fr/logiciels/latex/}
+	\item[Le Wikibooks en français]: \url{https://fr.wikibooks.org/wiki/LaTeX}
+	\item[Le cours de Ukonline]: \url{https://www.ukonline.be/programmation/latex/tutoriel/}
+\end{description}
+\medskip
+
+\section{Bibliographie \LaTeX}
+\begin{description}
+	\item[\textsc{Maguis} Noël-Arnaud], \textit{Rédigez des documents de qualité avec \\\LaTeX{} - L'outil des professionnels pour publier mémoires, thèses, \\rapports, articles scientifiques.}, Ed. Le Livre du Zéro, 2010.
+	\item[\textsc{Lozano} Vincent], \textit{Tout ce que vous avez toujours voulu savoir sur LaTeX sans jamais oser le demander. Ou comment utiliser LaTeX quand on n’y connaît goutte}, Ed. Framasoft, 2013, \url{https://archives.framabook.org/tout-sur-latex/index.html}
+\end{description}	
+\medskip
+
+\section{Bibliographie typographie}
+\begin{description}
+	\item[\textsc{André} Jacques], \textit{Petites leçons de typographie}, Ed. du Jobet, 1990, \url{jacques-andre.fr/faqtypo/lessons.pdf}.
+\end{description}
+\medskip
+
+\listoffigures
+\listoftables
+\end{document}

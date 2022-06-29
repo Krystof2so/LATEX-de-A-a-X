@@ -1,0 +1,68 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PART 2 - CHAPITRE 9 %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Les flottants}
+\LaTeX{} propose une façon optimisée pour placer des images et des figures, en spécifiant exactement leur place. C'est d'ailleurs une des fonctions phares de \LaTeX{}. Nous allons pour cela utiliser des environnements dits \og flottants\fg{}. En plus du positionnement ces environnements offrent la possibilité d'insérer des légendes à ces figures.
+\medskip
+
+Voyons donc cela avec l'environnement \texttt{figure}.
+\medskip
+
+\section{La création d'un flottant}
+Très simplement, à l'aide de la commande \verb|\includegraphics{}| et l'environnement \texttt{figure}:
+\begin{verbatim}
+    \begin{figure}
+    \begin{center}  % Pour centrer l'image
+    \includegraphics{fichier_image.xxx}
+    \end{center}    
+    \end{figure} 
+\end{verbatim}
+\medskip
+
+\section{Le placement}
+Il est possible de spécifier le type de placement à l'aide d'options insérées dans l'environnement \texttt{figure}:
+\begin{verbatim}
+    \begin{figure}[option]
+\end{verbatim}
+\medskip
+
+Les options de placement:
+\begin{description}
+	\item[t]: en haut de page;
+	\item[b]: en bas de page;
+	\item[p]: sur une page ne comportant que des flottants;
+	\item[h]: placer de préférence dans la zone où l'on insère l'environnement;
+	\item[H]: placer de façon insistante dans la zone où l'on insère l'environnement;
+	\item[!b]: le \og !\fg{} pour insister encore plus;
+	\item[bt]: de préférence en bas, mais en haut si en bas ce n'est pas possible. 
+\end{description}
+\medskip
+
+\section{Le placement par défaut}
+\LaTeX{} place les flottants par défaut suivant les options prévues, mais il est possible de modifier ce comportement à l'aide la de commande suivante, fournie par le package \texttt{float}:
+\begin{verbatim}
+    % Exemple avec un flottant de type 'figure'
+    \floatplacement{figure}{t}
+\end{verbatim}
+\medskip
+
+\section{Les légendes}
+Pour légender des flottants on utilise la commande \verb|\caption{}|. Elle s'utilise à la suite de l'environnement \texttt{center} et précède une éventuelle commande \verb|\label{}|.
+\begin{verbatim}
+    \begin{figure}
+    \begin{center}
+    \includegraphics{fichier_image.xxx}
+    \end{center}
+    \caption{Texte de la légende}
+    \label{référence}
+    \end{figure}
+\end{verbatim}
+\medskip
+
+\section{Les sauts de page avec le flottants}
+\begin{description}
+	\item[\texttt{\textbackslash clearpage}]: saut de page en produisant une page  remplie par tous les flottants non traités;
+	\item[\texttt{\textbackslash cleardoublepage}]: même effet, si ce n'est que la nouvelle page sera nécessairement une page impaire.
+\end{description}
+\medskip

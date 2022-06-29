@@ -1,0 +1,79 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PART 1 - CHAPITRE 3 %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Mécanisme et structuration d'un document \LaTeX}
+\section{Un document à compiler}
+Un document \LaTeX est avant tout du code qu'il est nécessaire de compiler pour obtenir un document lisible avec une mise en page élégante (du moins celle que l'on souhaite obtenir). Ce code se rédige dans un fichier \texttt{.tex} et la compilation, possible grâce à la distribution \LaTeX{} nous permettra de lire notre document au format \texttt{PS} ou \texttt{PDF}.
+\medskip
+
+Une compilation manuelle est tout à fait possible, mais pour un rendu quasi immédiat l'utilisation d'un éditeur \LaTeX{} facilite grandement notre travail.
+\medskip
+
+La rédaction d'un long document, tel un livre, nécessitera sûrement la création d'une bibliographie, d'un index, voire d'autres éléments complémentaires. Pour cela \LaTeX{} stocke de telles informations dans divers fichiers aux extensions différentes. La compilation de notre fichier \texttt{.tex} de départ générera alors une multitude de fichiers répondant aux besoins du document. 
+\medskip
+
+\section{Un premier document en guise d'exemple}
+A l'aide d'un éditeur de texte \LaTeX{} saisir les lignes suivantes:
+\begin{verbatim}
+    \documentclass{article}
+    
+    \begin{document}
+    Bonjour, voici donc un premier document très simple.
+    \end{document}
+\end{verbatim}
+\medskip	
+
+Il suffit ensuite d'enregistrer le fichier au format \texttt{.tex} dans un répertoire dédié. Le fichier doit ensuite être compilé, soit à l'aide de l'éditeur, ou bien sous GNU/Linux grâce à la ligne de commande. 
+\medskip
+
+Imaginons que nous ayons enregistré notre document sous le nom \texttt{document\_simple.tex}, voici comment le compiler et transformer les fichiers en celui voulu:
+\begin{description}
+	\item[\$ latex document\_simple.tex]: compilation qui permet d'obtenir le fichier \verb|document_simple.dvi|.
+	\item[\$ xdvi document\_simple.dvi]: lecture du fichier grâce à la commande \verb|xdvi|.
+	\item[\$ dvips document\_simple.dvi -o]: transformer le fichier \texttt{.dvi} en un fichier \texttt{.ps} grâce à la commande \verb|dvips|.
+	\item[\$ ps2pdf document\_simple.ps]: transformation en un fichier \textit{PostScript}, grâce à la commande \verb|ps2pdf|.
+	\item[\$ pdflatex document\_simple.tex]: compilation directe en un fichier \texttt{PDF} grâce à la commande \verb|pdflatex|.
+	\item[\$ xpdf document\_simple.pdf]: lecture du fichier \texttt{PDF} grâce à la commande \verb|xpdf|.
+\end{description}
+\medskip
+
+\section{Compilation et caractères spéciaux}
+Comme tout langage de programmation, \LaTeX{} utilise certains caractères pour son usage propre. Il en existe dix. Insérer l'un de ces caractères dans votre texte et il en résultera des erreurs de compilation. La parade à cela est d'insérer un \textit{backslash} juste avant le caractère (Ex: \verb|\%|). Pour le \textit{backslash} lui-même nous utilisons la commande suivante: \verb|\textbackslash{}|.
+\medskip
+
+Les caractères spéciaux: \$ \& \% \# \_ \^{} \~{} \textbackslash{} \{ \}
+\medskip
+
+Il existe un nombre encore conséquent de caractères spéciaux utilisés dans un environnement mathématique et autres\footnote{\url{https://tice.univ-irem.fr/lexique/res/Annexe_E_-_Liste_des_symboles_mathematiques_usuels__LaTeX_.pdf}}.
+\medskip
+
+\section{Structuration d'un document \LaTeX}
+Le texte de notre document doit impérativement s'insérer entre les deux lignes suivantes:
+\begin{verbatim}
+    \begin{document}
+    \end{document}
+\end{verbatim}
+\medskip
+
+\verb|\begin| et \verb|\end| délimitent ce que l'on nomme un environnement. Avec \LaTeX{} il existe divers environnements que nous découvrirons au fur et à mesure.
+\medskip
+
+\subsection*{Les divers types de documents}
+La commande \verb|\documentclass{}| sert à indiquer à \LaTeX{} que le document que nous allons rédiger correspond à un certain type, et par conséquent \LaTeX{} va adapter sa mise en page au regard du type indiqué. Dans notre premier document simple donné en guise d'exemple, le type utilisé est \texttt{article}.
+\medskip
+
+Principaux types de document usités:
+\begin{description}
+	\item[article]: Article
+	\item[book]: Livre
+	\item[letter]: Lettre
+	\item[report]: Rapport, thèse...
+\end{description}
+\medskip
+
+Syntaxe de la commande \verb|documentclass{}| avec l'insertion d'options:
+\begin{verbatim}
+    \documentclass[options]{type}
+\end{verbatim}
+\medskip

@@ -1,0 +1,223 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PART 2 - CHAPITRE 7 %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Citations, notes et références}
+\section{Les citations}
+Pour cela deux environnements sont proposés: \texttt{quote} et \texttt{quotation}.
+\medskip
+
+\texttt{quote} sera utilisé pour une citation simple:
+\begin{verbatim}
+    \begin{quote}
+    La vie c'est comme une bicyclette, il faut avancer pour ne pas 
+    perdre l'équilibre.
+    \end{quote}
+\end{verbatim}
+\medskip
+
+\begin{quote}
+La vie c'est comme une bicyclette, il faut avancer pour ne pas perdre l'équilibre\footnote{Albert \textsc{Einstein}}.
+\end{quote}
+\medskip
+
+\texttt{quotation} est fait pour de plus gros volumes de texte, et il introduit une tabulation comme pour un début de paragraphe.
+\medskip
+\begin{verbatim}
+    \begin{quotation}
+    Ainsi l'homme est si malheureux qu'il s'ennuierait même sans aucune cause 
+    d'ennui par l'état propre de sa complexion. Et il est si vain qu'étant 
+    plein de mille causes essentielles d'ennui, la moindre chose comme un 
+    billard et une balle qu'il pousse suffisent pour le divertir.
+    \end{quotation}
+\end{verbatim}
+\medskip
+
+\begin{quotation}
+Ainsi l'homme est si malheureux qu'il s'ennuierait même sans aucune cause d'ennui par l'état propre de sa complexion. Et il est si vain qu'étant plein de mille causes essentielles d'ennui, la moindre chose comme un billard et une balle qu'il pousse suffisent pour le divertir\footnote{Blaise \textsc{Pascal}}.
+\end{quotation}
+\medskip
+
+\section{Les citations de code}
+\subsection*{La commande \textbackslash \texttt{verb}}
+Cette commande permet d'insérer du code dans un paragraphe:
+\begin{verbatim}
+    La commande \verb|\verb| pour insérer du texte.
+\end{verbatim}
+\medskip
+
+Ce qui donne: La commande \verb|\verb| pour insérer du texte.
+\medskip
+
+Le caractère \texttt{|} peut être remplacé par \texttt{(} ou \texttt{[}:
+\begin{verbatim} 
+    \verb[mon code[
+    \verb(mon code(
+\end{verbatim}
+\medskip
+
+\subsection*{L'environnement \texttt{verbatim}}
+Cet environnement s'accompagne du package \textit{verbatim}. Il permet d'accompagner de plus gros volumes de code, que l'on écrit généralement sur plusieurs lignes. Un point de vigilance à avoir: Les tabulations sont remplacées par des espaces.
+\begin{verbatim}
+\begin{verbatim}
+# Une boucle Python
+i = 0
+while i < 5:
+    print(i + " X 5 = " + (i*5))
+    i =+ 1 
+\end{verbatim}
+\verb|\end{verbatim}|
+\medskip
+
+L'environnement \texttt{verbatimtab}, que l'on trouve avec le package \textit{moreverb}. La syntaxe est la suivante:
+\begin{verbatim}
+    \begin{verbatimtab}[nombre_d'espaces_par_tabulation]
+    ...le code...
+   \end{verbatimtab}
+\end{verbatim}
+\medskip
+
+\subsection*{L'environnement \texttt{lstlisting}}
+Cet environnement permet de mettre en forme du code avec de nombreuses et de façon colorée. Il est nécessaire d'utiliser le package \textit{listings} pour cela, puis de faire appel à la commande \texttt{lstset} dans l'en-tête du document. Cette sommande possède une grand nombre d'arguments paramétrables.
+\begin{verbatim}
+    \lstset{
+    language=nom_du_langage,       % choix du langage
+    basicstyle=\footnotesize,      % taille de la police du code
+    numbers=left,                  % numéro des lignes placé à gauche
+    numbers=right,                 % numéro des lignes placé à droite
+    numberstyle=\normalsize,       % taille de la police des numéros
+    numbersep=7pt,                 % distance entre code et numérotation
+    backgroundcolor=\color{white}, % couleur de fond (utilisation du package 
+                                   % 'color' possible)
+    }
+\end{verbatim}
+\medskip
+
+Les langages compatibles avec la commande sont constamment mis à jour sur la page \textit{Wikibooks} consacrée au package \textit{listings}\footnote{\url{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings#Supported_languages}}.
+\medskip
+
+Le code à afficher s'insère dans l'environnement \texttt{lstlisting} comme ci-dessous avec un bout de code rédigé en langage \textit{Python}:
+\begin{verbatim}
+    \usepackage{listings}
+    
+    \lstset{
+    language=Python,
+    basicstyle=\footnotesize,
+    numbers=left,
+    numberstyle=\normalsize,
+    numbersep=4pt,
+    }
+    
+    \begin{document}
+    
+    \begin{lstlisting}
+    # Une boucle while
+    i = 0
+    while i < 5:
+        print(i + " X 5 = " + (i*5))
+        i += 1
+    \end{lstlisting}
+    
+    \end{document}
+\end{verbatim}
+\medskip
+
+Ce qui donne à la compilation:
+\begin{lstlisting}
+    # Une boucle while
+    i = 0
+    while i < 5:
+        print(i + " X 5 = " + (i*5))
+        i += 1
+\end{lstlisting}
+\medskip
+
+\section{Insérer une \textit{url}}
+A l'aide du package \textit{url} et de la commande éponyme:
+\begin{verbatim}
+    \url{https://l'adresse_internet_à_faire_figurer}
+\end{verbatim}
+\medskip
+
+\section{Texte encadré et l'environnement \texttt{minipage}}
+L'environnement \texttt{minipage} et la commande \verb|\fbox| permettent d'encadrer du texte et de le mettre en valeur. Mais attention à les utiliser avec sobriété.
+\medskip
+
+\subsection*{Texte encadré avec \texttt{\textbackslash fbox}}
+Avec \verb|\fbox| il est possible de paramétrer diverses choses. Nous allons ici en utiliser deux: l'écart entre le texte et la bordure et l'épaisseur de cette dernière.
+\begin{verbatim}
+    % Commande permettant de définir l'écart
+    \setlength{\fboxsep}{8mm}
+    % Commande permettant de définir l'épaisseur du trait
+    \setlength{\fboxrule}{2mm}
+    \fbox{Mon texte encadré}
+\end{verbatim}
+\medskip
+
+Ce qui nous donne:
+\begin{center}
+\setlength{\fboxsep}{8mm}
+\setlength{\fboxrule}{2mm}
+\fbox{Mon texte encadré}
+\end{center}
+\medskip
+
+\subsection*{L'environnement \texttt{minipage}}
+Une \textit{minipage} est en encart de texte de largeur choisie, en quelque sorte une nouvelle page dans votre page. A l'intérieur de cet encart de texte, vous pourrez disposer et utiliser des environnements comme si cette \textit{minipage} était un document à part entière. L'environnement \texttt{minipage} est dépendant de deux paramètres: la largeur et l'alignement vertical.
+\medskip
+
+Illustrons cela:
+\begin{verbatim}
+  Voici mon texte dans lequel on insère une minipage
+  \fbox{ % pour encadrer notre minipage
+	  \begin{minipage}[c]{5cm}
+	  au sein de laquelle je peux utiliser d'autres environnements:
+		  \begin{center}
+			  \LaTeX{} c'est \textbf{bien} !
+		  \end{center}
+	  \end{minipage}
+  }
+pour illustrer.
+\end{verbatim}
+\medskip
+
+Voici mon texte dans lequel on insère une minipage
+\fbox{
+	\begin{minipage}[c]{5cm}
+	au sein de laquelle je peux utiliser d'autres environnements:
+		\begin{center}
+			\LaTeX{} c'est \textbf{bien} !
+		\end{center}
+	\end{minipage}
+}
+pour illustrer.
+\medskip
+
+\section{Notes de bas de page}
+\subsection*{La commande \texttt{\textbackslash footnote}}
+A l'endroit où l'on souhaite insérer la note de bas de page:
+\begin{verbatim}
+    \footnote{Mon texte de bas de page}
+\end{verbatim}
+\medskip
+
+\subsection*{La commande \textbackslash footnotemark}
+Tout d'abord, marquer tous les éléments concernés par des notes de bas de page à l'aide d'un numéro, puis on insère le texte de bas de page correspondant au numéro. Deux compilations seront alors nécessaires.
+\medskip
+
+Exemple de code:
+\begin{verbatim}
+    Voici mon code\footnotemarck[1] qui permet d'insérer\footnotemark[2] 
+    des notes de bas de page\footnotemark[3].
+    
+    % A insérer au niveau de la page où l'on souhaite voir figurer les 
+    % notes de bas de page:
+    \footnotetext[1]{Ma première note}
+    \footnotetext[2]{Ma deuxième note}
+    \footnotetext[3]{Ma troisième note}
+\end{verbatim}
+\medskip
+
+\section{Les références internes}
+\LaTeX{} permet d'écrire des références internes de façon simple à l'aide de trois commandes. La commande \verb|\label{nom_choisi}| sert à marquer un endroit, et les commandes \verb|\ref{nom_choisi}| et \verb|\pageref{nom_choisi}| permettent d'appeler le numéro de page ou la référence de l'élément marqué avec la commande \verb|\label{}|.
+\medskip

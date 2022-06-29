@@ -1,0 +1,46 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PART 1 - CHAPITRE 4 %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Les packages}
+\section{Que sont les packages ?}
+Les packages sont des outils additionnels que l'on insère afin d'implémenter des fonctionnalités supplémentaires aux fonctionnalités de base. IL faut savoir que quand on utilise \LaTeX{} nous avons fréquemment recours aux packages. Ces packages sont disponibles sous deux formes: soit le package est déjà présent dans la distribution \LaTeX{} et il ne reste plus qu'à s'en servir, soit le package est absent et il sera alors nécessaire de l'installer. Il est à noter que les packages considérés comme incontournables sont installés par défaut dans la distribution \LaTeX{} de base.
+\medskip
+
+Pour utiliser un package on va se servir de la commande:
+\begin{verbatim}
+	\usepackage[option]{type}
+\end{verbatim}  
+\medskip
+
+Cette commande se place juste après la commande \verb|\documentclass{}|.
+\medskip
+
+Exemple (noter l'utilisation du symbole \% pour insérer des commentaires):
+\begin{verbatim}
+	\documentclass{book}
+	
+	\usepackage[utf8]{inputenc}	  % un premier package
+	\usepackage[T1]{fontenc}		     % un deuxième package
+	\usepackage[french]{babel}	   % un troisième package
+	
+	\begin{document}
+	    Mon texte...
+	\end{document}
+\end{verbatim}
+\medskip
+
+Dans notre exemple, les trois packages utilisés sont: \textit{babel}\footnote{Pour en apprendre un peu plus sur ce package, nous renvoyons à la partie consacrée aux packages de ce livre.} (Pour spécifier que le texte est écrit en français), \textit{fontenc} et \textit{inputenc} (pour utiliser tous les caractères du clavier). L'option \texttt{utf8} du package \textit{inputenc} s'accompagne, pour les linuxiens, de l'installation du paquet \textit{texlive-lang-french} de leur distribution GNU/Linux.
+\medskip
+
+\section{Installer un package non présent dans la distribution \LaTeX}
+Ces packages sont portent souvent les extensions \texttt{.ins} et \texttt{.sty}. Certains packages peuvent porter une extension autre, et dans ce cas il faudra se reporter au fichier \texttt{README} qui les accompagne qui vous guidera dans l'installation.
+\medskip
+
+\subsection*{Au format \texttt{.sty}}
+Pour l'installation d'un tel package, il suffit de copier le fichier dans le répertoire contenant le fichier \texttt{.tex} source. Lors de la compilation seront recherchés les fichiers \texttt{.sty}.
+\medskip
+
+\subsection*{Au format \texttt{.ins}}
+L'installation se déroule en deux temps. Il faudra d'abord compiler le fichier \texttt{.ins}. Cette compilation va alors générer un fichier \texttt{.sty}. Placer ensuite ce fichier comme vu précédemment. 
+\medskip

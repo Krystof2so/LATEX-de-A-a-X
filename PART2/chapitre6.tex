@@ -1,0 +1,205 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PART 2 - CHAPITRE 6 %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Les polices}
+Nous allons ici voir comment modifier la mise en forme d'un texte (en gars, en italique, surligné, etc...), changer la couleur d'un texte, et modifier aussi la police (ponctuellement ou définitivement).
+\medskip
+
+\section{La taille du texte}
+\LaTeX{} propose dix commandes permettant d'augmenter ou de diminuer la taille d'un texte. On utilise ces commandes de deux manières:
+\begin{verbatim}
+    \commande{mon texte}
+\end{verbatim}
+\medskip
+
+Ou:
+\begin{verbatim}
+    {\commande mon texte}
+\end{verbatim}
+\medskip
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Commande} & \textbf{Taille du texte} \\
+\hline
+\verb|\tiny| & \tiny{Minuscule} \\
+\hline
+\verb|\scriptsize| & \scriptsize{Très très petit} \\
+\hline
+\verb|\footnotesize| & \footnotesize{Très petit} \\
+\hline
+\verb|\small| & \small{Petit} \\
+\hline
+\verb|\normalsize| & \normalsize{Normal} - Défini par défaut \\
+\hline
+\verb|\large| & \large{Un peu plus grand que normal} \\
+\hline
+\verb|\Large| & \Large{Grand} \\
+\hline
+\verb|\LARGE| & \LARGE{Très grand} \\
+\hline
+\verb|\huge| & \huge{Très très grand} \\
+\hline
+\verb|\Huge| & \Huge{Énorme !!!} \\
+\hline
+\end{tabular}
+\caption{Les commandes pour les tailles de texte}
+\end{center}
+\end{table}
+\medskip
+
+\section{Graisse, italique, soulignement, etc.}
+Nous disposons pour réaliser toutes ces opérations sur le texte de trois méthodes:
+\begin{itemize}
+    \item \verb|\commande{mon texte}|.
+    \item \verb|{\comande mon texte}|.
+    \item placer le texte dans un environnement.
+\end{itemize}
+\medskip
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Mise en forme} & \textbf{Commandes} & \textbf{Rendu} \\
+\hline
+\multirow{2}*{Normal} & \verb|{\normalfont texte}| & {\normalfont texte} \\
+& \verb|\begin{rm}texte\end{rm}| & \begin{rm}texte\end{rm} \\
+\hline 
+\multirow{3}*{Gras} & \verb|\textbf{texte}| & \textbf{texte} \\
+& \verb|{\bfseries texte}| & {\bfseries texte} \\
+& \verb|\begin{bf}texte\end{bf}| & \begin{bf}texte\end{bf} \\
+\hline
+\multirow{3}*{Italique} & \verb|\textit{texte}| & \textit{texte} \\
+& \verb|{\itshape texte}| & {\itshape texte} \\
+& \verb|\begin{it}texte\end{it}| & \begin{it}texte\end{it} \\
+\hline
+\multirow{3}*{Penché} & \verb|\textsl{texte}| & \textsl{texte} \\
+& \verb|{\slshape texte}| & {\slshape texte} \\
+& \verb|\begin{sl}texte\end{sl}| & \begin{sl}texte\end{sl} \\
+\hline
+\multirow{3}*{Machine à écrire} & \verb|\texttt{texte}| & \texttt{texte} \\
+& \verb|{\ttfamily texte}| & {\ttfamily texte} \\
+& \verb|\begin{tt}texte\end{tt}| & \begin{tt}texte\end{tt} \\
+\hline
+\multirow{4}*{Petites capitales} & \verb|\textsc{texte}| & \textsc{texte} \\
+& \verb|\bsc{texte}| & \bsc{texte} \\
+& \verb|{\scshape texte}| & {\scshape texte} \\
+& \verb|\begin{sc}texte\end{sc}| & \begin{sc}texte\end{sc} \\
+\hline
+Exposant & \verb|texte\textsuperscript{texte}| & texte\textsuperscript{texte} \\
+\hline
+Encadré & \verb|\fbox{texte}| & \fbox{texte} \\
+\hline
+Soulignement & \multirow{2}*{\texttt{\textbackslash ul\{texte\}}} & \multirow{2}*{\ul{texte}} \\
+\textit{package soul} & & \\
+\hline
+Soulignement & \multirow{2}*{\texttt{\textbackslash uuline\{texte\}}} & \multirow{2}*{\uuline{texte}} \\
+\textit{package ulem} & & \\
+\hline
+Soulignement & \multirow{2}*{\texttt{\textbackslash uwave\{texte\}}} & \multirow{2}*{\uwave{texte}} \\
+\textit{package ulem} & & \\
+\hline
+Barrer & \multirow{2}*{\texttt{\textbackslash st\{texte\}}} & \multirow{2}*{\st{texte}} \\
+\textit{package soul} & & \\
+\hline
+\end{tabular}
+\caption{Les diverses mises en forme du texte}
+\end{center}
+\end{table}
+\medskip
+
+\section{La commande \texttt{\textbackslash emph\{\}}}
+Cette commande a un fonctionnement à part puisqu'elle permet d'indiquer à \LaTeX{} de mettre le texte en évidence (en emphase). C'est \LaTeX{} qui se chargera de choisir la meilleure manière de mettre le texte en valeur. Il est d'ailleurs préférable d'utiliser \verb|\emph{}| à l'italique.
+\medskip
+
+Nous pouvons cependant définir comment la commande \verb|\emph{}| va mettre en évidence la portion de texte voulue, en plaçant dans le préambule la ligne suivante:
+\begin{verbatim}
+    \renewcommand{\emph}{fonction_liée_à_la_commande}
+\end{verbatim}
+\medskip
+
+Exemple pou une mise en évidence avec le style \og machine à écrire\fg{}: 
+\begin{verbatim}
+    \renewcommand{\emph}{\texttt}
+\end{verbatim}
+\medskip
+
+\section{Mise en couleur}
+\subsection*{Les couleurs par défaut}
+Elles sont au nombre de huit et l'usage de la couleur nécessite l'emploi du package \textit{color}. Ces couleurs sont \texttt{black}, \texttt{white}, \texttt{red}, \texttt{green}, \texttt{blue}, \texttt{yellow}, \texttt{magenta} et \texttt{cyan}.
+\medskip
+
+La commande est la suivante:
+\begin{verbatim}
+    \textcolor{couleur}{mon texte}
+\end{verbatim}
+\medskip
+
+\subsection*{Création de nouvelles couleurs}
+Il est possible de créer de nouvelles couleurs avec la commande \verb|\definecolor| qui se place dans le préambule, soit à partir de niveaux de gris ou d'un mélange de trois couleurs (rouge, vert et bleu). Ces nouvelles couleurs se verront attribuer un nom et elles pourront s'utiliser grâce à la commande \verb|\textcolor|.
+\medskip
+
+\paragraph*{Par niveaux de gris}: Le niveau de gris se trouve sur une échelle située entre \texttt{0} (le noir) et le \texttt{1} (le blanc). Choisir un niveau de gris va consister à prendre un nombre à deux décimales situé entre \texttt{0} et \texttt{1}, que l'on va appliquer sur une des huit couleurs par défaut.
+\begin{verbatim}
+    \definecolor{nomchoisi}{une des 8 couleurs}{niveau de gris}
+\end{verbatim}
+\medskip
+
+\paragraph*{Par mélange des trois couleurs}: Il suffit de choisir tour à tour l'intensité de rouge, de vert et de bleu (entre \texttt{0} et \texttt{1}).
+\begin{verbatim}
+    \definecolor{nomchoisi}{rgb}{taux de rouge, de ver, de bleu}
+\end{verbatim}
+\medskip
+
+\section{Les packs de polices}
+Afin de pouvoir changer les polices de caractères des packs de polices ont été créés, tout en ayant dans l'idée de conserver  une cohérence typographique à l'intégralité du texte. Un pack cohérent va comprendre quatre polices cohérentes:
+\begin{itemize}
+    \item des caractères avec empattements;
+    \item des caractères sans empattements;
+    \item des caractères façon machine à écrire;
+    \item des caractères servant à écrire des formules mathématiques.
+\end{itemize}
+\medskip
+
+Par défaut \LaTeX{} fournit la police \textit{Computer Modern}. Pour faire appel à autre pack c'est le même procédé que de faire appel à un package.
+\begin{verbatim}
+    \usepackage{nom_du_pack}
+\end{verbatim}
+\medskip
+
+Des modifications ponctuelles de police peuvent aussi être introduites grâce à la commande:
+\begin{verbatim}
+    {\fontfamily{code_police}\selectfont mon texte}
+\end{verbatim}
+\medskip
+
+Quelques packs: \textit{bookman}, \textit{charter}, \textit{newcent}, \textit{lmodern}, \textit{mathpazo}, \textit{mathptmx}, etc.
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Code de la police} & \textbf{rendu} \\
+\hline
+\texttt{bch} & {\fontfamily{bch}\selectfont Mon texte en Charter} \\
+\hline
+\texttt{cmr} & {\fontfamily{cmr}\selectfont Mon texte en Computer Modern} \\
+\hline
+\texttt{lmr} & {\fontfamily{lmr}\selectfont Mon texte en Latin Modern Roman} \\
+\hline
+\texttt{lmss} & {\fontfamily{lmss}\selectfont Mon texte en Latin Modern Sans Empattement} \\
+\hline
+\texttt{lmmsq} & {\fontfamily{lmmsq}\selectfont Mon texte en Latin Modern Sans Emp. Exp.} \\
+\hline
+\texttt{lmtt} & {\fontfamily{lmtt}\selectfont Mon texte en Latin Modern Typewritter} \\
+\hline
+\texttt{pbk} & {\fontfamily{pbk}\selectfont Mon texte en Bookman} \\
+\hline
+\end{tabular}
+\caption{Quelques exemples de polices}
+\end{center}
+\end{table}
+\medskip

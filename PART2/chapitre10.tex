@@ -1,0 +1,447 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PART 2 - CHAPITRE 10 %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Les tableaux}
+Il faut savoir que \LaTeX{} considère les tableaux comme des objets flottants. Les tableaux font l'objet d'une documentation extrêmement fournie, à l'instar de la documentation des notations mathématiques. Dans ce chapitre nous allons juste nous contenter d'apprendre à:
+\begin{itemize}
+	\item composer des tableaux simples;
+	\item fusionner des cellules;
+	\item paramétrer le placement allié à quelques détails de mise en page.
+\end{itemize} 
+\medskip
+
+\section{Structure type d'un tableau}
+\subsection*{Tableau sans bordure}
+Nous allons utiliser l'environnement \texttt{tabular}. Dans un premier temps il faut décider de l'alignement des cellules dans chaque colonne (options):
+\begin{description}
+	\item[r]: à droite;
+	\item[l]: à gauche;
+	\item[c]: centré.
+\end{description}
+\medskip
+
+Exemple de squelette de tableau à deux colonnes:
+\begin{verbatim}
+    \begin{tabular}{cc}
+        ...code pour mon tableau...
+    \end{tabular}
+\end{verbatim}
+\medskip
+
+Nous entrons ensuite ligne par ligne le contenu des cellules, séparées par le caractère \texttt{\&}. Chaque ligne se termine par \textbackslash \textbackslash{} pour indiquer que nous changeons de ligne.
+\medskip
+
+Exemple de tableau à deux colonnes et deux lignes:
+\begin{verbatim}
+    \begin{tabular}{cc}
+        lig. 1 col. 1 & lig. 1 col. 2 \\
+        lig. 2 col. 1 & lig. 2 col. 2 \\
+    \end{tabular}
+\end{verbatim}
+\medskip
+
+Ce qui donne:
+\begin{figure}[!h]
+\begin{center}
+\begin{tabular}{cc}
+        lig. 1 col. 1 & lig. 1 col. 2 \\
+        lig. 2 col. 1 & lig. 2 col. 2 \\
+\end{tabular}
+\end{center}
+\end{figure}
+\medskip
+
+\subsection*{Tableau avec bordures}
+Pour obtenir une ligne horizontale on va utiliser la commande \verb|\hline|. Pour marquer les colonnes, on va utiliser \og \texttt{|}\fg{} lors de la spécification des alignements.
+\medskip
+
+Exemple d'une tableau à deux colonnes et deux lignes:
+\begin{verbatim}
+    \begin{tabular}{|c|c|}
+        \hline
+        lig. 1 col. 1 & lig. 1 col. 2 \\
+        \hline
+        lig. 2 col. 1 & lig. 2 col. 2 \\
+        \hline
+    \end{tabular}
+\end{verbatim}
+\medskip
+
+Ce qui donne:
+\begin{figure}[!h]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+lig. 1 col. 1 & lig. 1 col. 2 \\
+\hline
+lig. 2 col. 1 & lig. 2 col. 2 \\
+\hline
+\end{tabular}
+\end{center}
+\end{figure}
+\medskip
+
+\section{Fusion des cellules}
+\subsection*{Fusion de colonnes}
+La commande est la suivante:
+\begin{verbatim}
+    \multicolumn{nbre_colonnes_fusionnées}{alignements}{Texte}
+\end{verbatim}
+\medskip
+
+La difficulté réside dans le choix un nouvel alignement pour la cellule fusionnée.
+\medskip
+
+Illustrons cela:
+\begin{verbatim}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    Multiplié par & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \hline
+    1 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \hline
+    2 & 2 & 4 & 6 & 8 & 10 & 12 & 14 & 16 & 18 & 20 \\
+    \hline
+    3 & 3 & 6 & 9 & 12 & 15 & 18 & 21 & 24 & 27 & 30 \\
+    \hline
+    4 & 4 & 8 & 12 & 16 & 20 & 24 & 28 & 32 & 36 & 40 \\
+    \hline
+    5 & 5 & 10 & 15 & 20 & 25 & 30 & 35 & 40 & 45 & 50 \\
+    \hline
+    6 & 6 & 12 & 18 & 24 & 30 & 36 & 42 & 48 & 54 & 60 \\
+    \hline
+    7 & 7 & 14 & 21 & 28 & 35 & 42 & 49 & 56 & 63 & 70 \\
+    \hline
+    8 & 8 & 16 & 24 & 32 & 40 & 48 & 56 & 64 & 72 & 80 \\
+    \hline
+    9 & 9 & 18 & 27 & 36 & 45 & 54 & 63 & 72 & 81 & 90 \\
+    \hline
+    10 & 10 & 20 & 30 & 40 & 50 & 60 & 70 & 80 & 90 & 100 \\
+    \hline 
+\end{tabular}
+\end{verbatim}
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Multiplié par & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\hline
+1 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\hline
+2 & 2 & 4 & 6 & 8 & 10 & 12 & 14 & 16 & 18 & 20 \\
+\hline
+3 & 3 & 6 & 9 & 12 & 15 & 18 & 21 & 24 & 27 & 30 \\
+\hline
+4 & 4 & 8 & 12 & 16 & 20 & 24 & 28 & 32 & 36 & 40 \\
+\hline
+5 & 5 & 10 & 15 & 20 & 25 & 30 & 35 & 40 & 45 & 50 \\
+\hline
+6 & 6 & 12 & 18 & 24 & 30 & 36 & 42 & 48 & 54 & 60 \\
+\hline
+7 & 7 & 14 & 21 & 28 & 35 & 42 & 49 & 56 & 63 & 70 \\
+\hline
+8 & 8 & 16 & 24 & 32 & 40 & 48 & 56 & 64 & 72 & 80 \\
+\hline
+9 & 9 & 18 & 27 & 36 & 45 & 54 & 63 & 72 & 81 & 90 \\
+\hline
+10 & 10 & 20 & 30 & 40 & 50 & 60 & 70 & 80 & 90 & 100 \\
+\hline
+\end{tabular}
+\caption{Table de multiplication}
+\end{center}
+\end{table}
+\medskip
+
+\subsection*{Fusion de lignes}
+Pour la fusion de lignes c'est la commande \verb|\multirow| contenue dans le package du même nom.
+\begin{verbatim}
+    \multirow{nbre de lignes fusionnées}{taille colonne en cm}{texte}
+    \multirow{nbre de lignes fusionnées}*{texte}
+\end{verbatim}
+
+Observez bien le code suivant et le résultat qui s'en suit:
+\begin{verbatim}
+    \begin{tabular}{|l|c|c|c|c|}
+    \hline
+    1 & \multicolumn{2}{c|}{2} & 3 & 4 \\
+    \hline
+    \multicolumn{2}{|l|}{5} & 6 & 7 & 8 \\
+    \hline
+    9 & 10 & \multicolumn{3}{c|}{11} \\
+    \hline
+    \multirow{2}{1cm}{12} & 13 & 14 & 15 & 16 \\
+    \cline{2-5}
+    & 17 & 18 & 19 & 20 \\
+    \hline
+    21 & 22 & \multirow{2}*{23} & 24 & 25 \\
+    \cline{1-2} \cline{4-5}
+    26 & 27 & & 28 & 29 \\
+    \hline
+    \end{tabular}
+\end{verbatim}
+\medskip
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+1 & \multicolumn{2}{c|}{2} & 3 & 4 \\
+\hline
+\multicolumn{2}{|l|}{5} & 6 & 7 & 8 \\
+\hline
+9 & 10 & \multicolumn{3}{c|}{11} \\
+\hline
+\multirow{2}{1cm}{12} & 13 & 14 & 15 & 16 \\
+\cline{2-5}
+& 17 & 18 & 19 & 20 \\
+\hline
+21 & 22 & \multirow{2}*{23} & 24 & 25 \\
+\cline{1-2} \cline{4-5}
+26 & 27 & & 28 & 29 \\
+\hline
+\end{tabular}
+\caption{Fusion de lignes et de colonnes}
+\end{center}
+\end{table}
+\medskip
+
+\section{Autres paramètres applicables à un tableau}
+\subsection*{Colonne de largeur paramétrée}
+\begin{verbatim}
+    p{largeur de la colonne en centimètres}
+\end{verbatim}
+\medskip
+
+Cette option n'a aucune influence sur l'alignement du texte au sein des cellules.
+\medskip
+
+Un exemple:
+\begin{verbatim}
+    \begin{tabular}{|p{1cm}|p{2cm}|p{3cm}|p{4cm}|}
+    \hline
+    1cm & 2cm & 3cm & 4cm \\
+    \hline
+    \end{tabular}
+\end{verbatim}
+\medskip
+
+Ce qui donne:
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|p{1cm}|p{2cm}|p{3cm}|p{4cm}|}
+    \hline
+    1cm & 2cm & 3cm & 4cm \\
+    \hline
+\end{tabular}
+\caption{Cellules de longueur définie}
+\end{center}
+\end{table}
+\medskip
+
+\subsection*{Créer une \textit{slashbox}}
+Le package \textit{slashbox} permet d'utiliser la commande:
+\begin{verbatim}
+    \backslashbox{Texte dessous}{Texte dessus}
+\end{verbatim}
+\medskip
+
+Cette commande sert à scinder en deux parties triangulaires de même aire une cellule initialement rectangulaire.
+\medskip
+
+Démonstration:
+\begin{verbatim}
+    \begin{tabular}{|c|p{1cm}|p{2cm}|}
+    \hline
+    \backslashbox{Debian}{Ubuntu} & 1cm & 2cm \\
+    \hline
+    \end{tabular}
+\end{verbatim}
+\medskip
+
+Résultat:
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|p{1cm}|p{2cm}|}
+\hline
+\backslashbox{Debian}{Ubuntu} & 1cm & 2cm \\
+\hline
+\end{tabular}
+\caption{Avec le package \textit{slashbox}}
+\end{center}
+\end{table}
+\medskip
+
+\subsection*{Changer les séparateurs}
+Cela est possible à l'aide des commandes \verb|!{séparateur}| ou \verb|@{séparateur}|, contenues dans le package \textit{array}. A noter que ce package contient beaucoup de commandes utiles à la création des tableaux. La différence entre ces deux commandes réside dans le fait de pouvoir insérer une espace avant et après le séparateur.
+\begin{verbatim}
+    \begin{tabular}{|c !{\#} c @{\#}c|}
+    \hline
+    3 + 1 & = & 4 \\
+    \hline
+    \end{tabular}
+\end{verbatim}
+\medskip
+
+Ce qui a pour résultat:
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|c !{\#} c @{\#}c|}
+\hline
+3 + 1 & = & 4 \\
+\hline
+\end{tabular}
+\caption{De nouveaux séparateurs}
+\end{center}
+\end{table}
+\medskip
+
+\section{Des commandes et des environnements dans un tableau}
+Démonstration avec la table de multiplication:
+\begin{verbatim}
+    \begin{tabular}{|>{\begin{bf}} c <{\end{bf}}|c|c|c|c|c|c|c|c|c|c|}
+ 
+    \hline
+    Multiplié par & \begin{bf}1\end{bf} & \begin{bf}2\end{bf} & 
+    	\begin{bf}3\end{bf} & \begin{bf}4\end{bf} & \begin{bf}5\end{bf} & 
+    	\begin{bf}6\end{bf} & \begin{bf}7\end{bf} & \begin{bf}8\end{bf} & 
+    	\begin{bf}9\end{bf} & \begin{bf}10\end{bf} \\
+    \hline
+    1 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \hline
+    2 & 2 & 4 & 6 & 8 & 10 & 12 & 14 & 16 & 18 & 20 \\
+    \hline
+    3 & 3 & 6 & 9 & 12 & 15 & 18 & 21 & 24 & 27 & 30 \\
+    \hline
+    4 & 4 & 8 & 12 & 16 & 20 & 24 & 28 & 32 & 36 & 40 \\
+    \hline
+    5 & 5 & 10 & 15 & 20 & 25 & 30 & 35 & 40 & 45 & 50 \\
+    \hline
+    6 & 6 & 12 & 18 & 24 & 30 & 36 & 42 & 48 & 54 & 60 \\
+    \hline
+    7 & 7 & 14 & 21 & 28 & 35 & 42 & 49 & 56 & 63 & 70 \\
+    \hline
+    8 & 8 & 16 & 24 & 32 & 40 & 48 & 56 & 64 & 72 & 80 \\
+    \hline
+    9 & 9 & 18 & 27 & 36 & 45 & 54 & 63 & 72 & 81 & 90 \\
+    \hline
+    10 & 10 & 20 & 30 & 40 & 50 & 60 & 70 & 80 & 90 & 100 \\
+    \hline
+ 
+    \end{tabular}
+\end{verbatim}
+\medskip
+
+Affichage:
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|>{\begin{bf}} c <{\end{bf}}|c|c|c|c|c|c|c|c|c|c|}
+ 
+\hline
+Multiplié par & \begin{bf}1\end{bf} & \begin{bf}2\end{bf} & \begin{bf}3\end{bf} & \begin{bf}4\end{bf} & \begin{bf}5\end{bf} & \begin{bf}6\end{bf} & \begin{bf}7\end{bf} & \begin{bf}8\end{bf} & \begin{bf}9\end{bf} & \begin{bf}10\end{bf} \\
+\hline
+1 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\hline
+2 & 2 & 4 & 6 & 8 & 10 & 12 & 14 & 16 & 18 & 20 \\
+\hline
+3 & 3 & 6 & 9 & 12 & 15 & 18 & 21 & 24 & 27 & 30 \\
+\hline
+4 & 4 & 8 & 12 & 16 & 20 & 24 & 28 & 32 & 36 & 40 \\
+\hline
+5 & 5 & 10 & 15 & 20 & 25 & 30 & 35 & 40 & 45 & 50 \\
+\hline
+6 & 6 & 12 & 18 & 24 & 30 & 36 & 42 & 48 & 54 & 60 \\
+\hline
+7 & 7 & 14 & 21 & 28 & 35 & 42 & 49 & 56 & 63 & 70 \\
+\hline
+8 & 8 & 16 & 24 & 32 & 40 & 48 & 56 & 64 & 72 & 80 \\
+\hline
+9 & 9 & 18 & 27 & 36 & 45 & 54 & 63 & 72 & 81 & 90 \\
+\hline
+10 & 10 & 20 & 30 & 40 & 50 & 60 & 70 & 80 & 90 & 100 \\
+\hline
+ 
+\end{tabular}
+\caption{Mise en gras de certaines parties}
+\end{center}
+\end{table}
+\medskip
+
+\subsection*{Colorer des cellules}
+Pour cela deux packages sont nécessaires: \textit{color} et \textit{colortbl}. Les commandes sont les suivantes:
+\begin{verbatim}
+    \columncolor{couleur}  % Pour colorer les colonnes
+    \rowcolor{couleur}  % Pour colorer des lignes
+    \cellcolor{couleur}  % Pour colorer les cellules
+\end{verbatim}
+\medskip
+
+Exemple d'un tableau avec la première ligne et la première colonne sur fond jaune:
+\begin{verbatim}
+    \begin{tabular}{>{\begin{bf} \columncolor{yellow}} c <{\end{bf}}cccccccccc}
+    \hline  
+    \rowcolor{yellow}Multiplié par & \begin{bf}1\end{bf} & \begin{bf}2\end{bf} & 
+        \begin{bf}3\end{bf} & \begin{bf}4\end{bf} & \begin{bf}5\end{bf} & 
+        \begin{bf}6\end{bf} & \begin{bf}7\end{bf} & \begin{bf}8\end{bf} & 
+        \begin{bf}9\end{bf} & \begin{bf}10\end{bf} \\
+    \hline 
+    1 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \hline
+    2 & 2 & 4 & 6 & 8 & 10 & 12 & 14 & 16 & 18 & 20 \\
+    \hline
+    3 & 3 & 6 & 9 & 12 & 15 & 18 & 21 & 24 & 27 & 30 \\
+    \hline
+    4 & 4 & 8 & 12 & 16 & 20 & 24 & 28 & 32 & 36 & 40 \\
+    \hline
+    5 & 5 & 10 & 15 & 20 & 25 & 30 & 35 & 40 & 45 & 50 \\
+    \hline
+    6 & 6 & 12 & 18 & 24 & 30 & 36 & 42 & 48 & 54 & 60 \\
+    \hline
+    7 & 7 & 14 & 21 & 28 & 35 & 42 & 49 & 56 & 63 & 70 \\
+    \hline
+    8 & 8 & 16 & 24 & 32 & 40 & 48 & 56 & 64 & 72 & 80 \\
+    \hline
+    9 & 9 & 18 & 27 & 36 & 45 & 54 & 63 & 72 & 81 & 90 \\
+    \hline
+    10 & 10 & 20 & 30 & 40 & 50 & 60 & 70 & 80 & 90 & 100 \\
+    \hline
+    \end{tabular}
+\end{verbatim}
+\medskip
+
+Affichage:
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{>{\begin{bf} \columncolor{yellow}} c <{\end{bf}}cccccccccc}
+\hline  
+\rowcolor{yellow}Multiplié par & \begin{bf}1\end{bf} & \begin{bf}2\end{bf} & \begin{bf}3\end{bf} & \begin{bf}4\end{bf} & \begin{bf}5\end{bf} & \begin{bf}6\end{bf} & \begin{bf}7\end{bf} & \begin{bf}8\end{bf} & \begin{bf}9\end{bf} & \begin{bf}10\end{bf} \\
+\hline 
+1 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+\hline
+2 & 2 & 4 & 6 & 8 & 10 & 12 & 14 & 16 & 18 & 20 \\
+\hline
+3 & 3 & 6 & 9 & 12 & 15 & 18 & 21 & 24 & 27 & 30 \\
+\hline
+4 & 4 & 8 & 12 & 16 & 20 & 24 & 28 & 32 & 36 & 40 \\
+\hline
+5 & 5 & 10 & 15 & 20 & 25 & 30 & 35 & 40 & 45 & 50 \\
+\hline
+6 & 6 & 12 & 18 & 24 & 30 & 36 & 42 & 48 & 54 & 60 \\
+\hline
+7 & 7 & 14 & 21 & 28 & 35 & 42 & 49 & 56 & 63 & 70 \\
+\hline
+8 & 8 & 16 & 24 & 32 & 40 & 48 & 56 & 64 & 72 & 80 \\
+\hline
+9 & 9 & 18 & 27 & 36 & 45 & 54 & 63 & 72 & 81 & 90 \\
+\hline
+10 & 10 & 20 & 30 & 40 & 50 & 60 & 70 & 80 & 90 & 100 \\
+\hline
+\end{tabular}
+\caption{Tableau avec des couleurs}
+\end{center}
+\end{table}
+\medskip
+
+\subsection*{L'environnement flottant \texttt{table}}
+Cela revient à insérer l'environnement \texttt{tabular} dans un environnement flottant. Celui-ci se nomme \texttt{table} et est similaire en tout point à l'environnement \texttt{figure}, avec l'utilisation de \texttt{caption}, \texttt{label}, \texttt{center}, etc.
+\medskip
